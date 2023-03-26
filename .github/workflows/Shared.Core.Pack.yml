@@ -5,7 +5,7 @@ on:
 
 jobs:
    publish_nuget_package:
-    runs-on: [self-hosted]
+    runs-on: self-hosted
     
     steps:
     - uses: actions/checkout@v3
@@ -15,10 +15,10 @@ jobs:
     - name: Install dependencies
       run: |
         dotnet tool restore
-        dotnet restore Amatsucozy.PMS.Shared/Amatsucozy.PMS.Shared.Core/Amatsucozy.PMS.Shared.Core.csproj
+        dotnet restore Amatsucozy.PMS.Shared.Core/Amatsucozy.PMS.Shared.Core.csproj
 
     - name: Pack
-      run: dotnet pack Amatsucozy.PMS.Shared/Amatsucozy.PMS.Shared.Core/Amatsucozy.PMS.Shared.Core.csproj --no-restore -c Release
+      run: dotnet pack Amatsucozy.PMS.Shared.Core/Amatsucozy.PMS.Shared.Core.csproj --no-restore -c Release
 
     - name: Push
-      run: dotnet nuget push Amatsucozy.PMS.Shared/Amatsucozy.PMS.Shared.Core/bin/Release/Amatsucozy.PMS.Shared.Core.${env:NBGV_NuGetPackageVersion}.nupkg -s "github" -k ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet nuget push Amatsucozy.PMS.Shared.Core/bin/Release/Amatsucozy.PMS.Shared.Core.${env:NBGV_NuGetPackageVersion}.nupkg -s "github" -k ${{ secrets.GITHUB_TOKEN }}
