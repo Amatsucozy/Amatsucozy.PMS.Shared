@@ -64,6 +64,10 @@ public static class MessageQueueHelper
                 });
 
                 factoryConfigurator.ConfigureEndpoints(context);
+                factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
+                {
+                    endpointConfigurator.DeadLetterExchange = $"{queueOptions.QueueName}_dead_letter";
+                });
             });
 
             configurator.AddConsumers(consumersContainingAssemblyType.Assembly);
@@ -87,6 +91,12 @@ public static class MessageQueueHelper
                         queueOptions.Username,
                         queueOptions.Password
                     );
+                });
+                
+                factoryConfigurator.ConfigureEndpoints(context);
+                factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
+                {
+                    endpointConfigurator.EnableDeadLetteringOnMessageExpiration = true;
                 });
             });
 
