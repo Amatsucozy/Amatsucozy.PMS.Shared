@@ -29,7 +29,7 @@ public static class MessageQueueHelper
             throw new Exception("Queue host is not in a correct format");
         }
 
-        switch (hostUri!.Scheme)
+        switch (hostUri.Scheme)
         {
             case QueueProviderSchemes.RabbitMq:
             {
@@ -56,7 +56,7 @@ public static class MessageQueueHelper
     {
         serviceCollection.AddMassTransit(configurator =>
         {
-            configurator.UsingRabbitMq((_, factoryConfigurator) =>
+            configurator.UsingRabbitMq((context, factoryConfigurator) =>
             {
                 factoryConfigurator.Host(hostUri, hostConfigurator =>
                 {
@@ -67,6 +67,8 @@ public static class MessageQueueHelper
                 factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
                 {
                     endpointConfigurator.DeadLetterExchange = $"{queueOptions.QueueName}_dead_letter";
+
+                    endpointConfigurator.ConfigureConsumers(context);
                 });
             });
 
@@ -82,7 +84,7 @@ public static class MessageQueueHelper
     {
         serviceCollection.AddMassTransit(configurator =>
         {
-            configurator.UsingAzureServiceBus((_, factoryConfigurator) =>
+            configurator.UsingAzureServiceBus((context, factoryConfigurator) =>
             {
                 factoryConfigurator.Host(hostUri, hostConfigurator =>
                 {
@@ -96,6 +98,8 @@ public static class MessageQueueHelper
                 factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
                 {
                     endpointConfigurator.EnableDeadLetteringOnMessageExpiration = true;
+
+                    endpointConfigurator.ConfigureConsumers(context);
                 });
             });
 
