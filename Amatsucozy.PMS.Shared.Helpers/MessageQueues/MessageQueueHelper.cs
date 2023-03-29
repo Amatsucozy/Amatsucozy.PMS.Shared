@@ -2,6 +2,7 @@
 using Amatsucozy.PMS.Shared.Helpers.MessageQueues.Constants;
 using Azure;
 using MassTransit;
+using MassTransit.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -55,7 +56,7 @@ public static class MessageQueueHelper
     {
         serviceCollection.AddMassTransit(configurator =>
         {
-            configurator.UsingRabbitMq((context, factoryConfigurator) =>
+            configurator.UsingRabbitMq((_, factoryConfigurator) =>
             {
                 factoryConfigurator.Host(hostUri, hostConfigurator =>
                 {
@@ -63,7 +64,6 @@ public static class MessageQueueHelper
                     hostConfigurator.Password(queueOptions.Password);
                 });
 
-                factoryConfigurator.ConfigureEndpoints(context);
                 factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
                 {
                     endpointConfigurator.DeadLetterExchange = $"{queueOptions.QueueName}_dead_letter";
@@ -82,7 +82,7 @@ public static class MessageQueueHelper
     {
         serviceCollection.AddMassTransit(configurator =>
         {
-            configurator.UsingAzureServiceBus((context, factoryConfigurator) =>
+            configurator.UsingAzureServiceBus((_, factoryConfigurator) =>
             {
                 factoryConfigurator.Host(hostUri, hostConfigurator =>
                 {
@@ -93,7 +93,6 @@ public static class MessageQueueHelper
                     );
                 });
                 
-                factoryConfigurator.ConfigureEndpoints(context);
                 factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
                 {
                     endpointConfigurator.EnableDeadLetteringOnMessageExpiration = true;
