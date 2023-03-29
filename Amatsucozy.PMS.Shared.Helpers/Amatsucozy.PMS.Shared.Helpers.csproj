@@ -4,6 +4,11 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Amatsucozy.PMS.Shared.Helpers</Title>
+        <Authors>Amatsucozy</Authors>
+        <Description>Helpers</Description>
+        <Copyright>Amatsucozy</Copyright>
+        <PackageTags>pms shared helpers nuget</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
