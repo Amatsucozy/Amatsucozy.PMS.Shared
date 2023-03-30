@@ -2,33 +2,28 @@
 
 namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
-public abstract class Entity : IEquatable<Entity>
+public abstract class Entity : IEqualityComparer<Entity>
 {
-    public Guid Id { get; init; } = Guid.NewGuid();
+    public Guid Id { get; protected init; } = Guid.NewGuid();
     
-    public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedAt { get; protected init; } = DateTimeOffset.UtcNow;
     
-    public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
-    
+    public DateTimeOffset UpdatedAt { get; protected set; } = DateTimeOffset.UtcNow;
+
     [Timestamp]
-    public byte[] RowVersion { get; private set; }
+    public byte[] RowVersion { get; protected set; } = new byte[8];
 
-    public bool Equals(Entity? other)
+    public bool Equals(Entity x, Entity y)
     {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
-        return Id.Equals(other.Id) && CreatedAt.Equals(other.CreatedAt);
+        if (ReferenceEquals(x, y)) return true;
+        if (ReferenceEquals(x, null)) return false;
+        if (ReferenceEquals(y, null)) return false;
+        if (x.GetType() != y.GetType()) return false;
+        return x.Id.Equals(y.Id) && x.CreatedAt.Equals(y.CreatedAt) && x.RowVersion.Equals(y.RowVersion);
     }
 
-    public override bool Equals(object? obj)
+    public int GetHashCode(Entity obj)
     {
-        if (ReferenceEquals(null, obj)) return false;
-        if (ReferenceEquals(this, obj)) return true;
-        return obj.GetType() == GetType() && Equals((Entity)obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Id, CreatedAt);
+        return HashCode.Combine(obj.Id, obj.CreatedAt, obj.RowVersion);
     }
 }
