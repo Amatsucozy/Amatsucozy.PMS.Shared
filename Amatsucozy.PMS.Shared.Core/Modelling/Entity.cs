@@ -4,6 +4,7 @@ namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
 public abstract class Entity : IEqualityComparer<Entity>
 {
+    [Key]
     public Guid Id { get; protected init; } = Guid.NewGuid();
     
     public DateTimeOffset CreatedAt { get; protected init; } = DateTimeOffset.UtcNow;
