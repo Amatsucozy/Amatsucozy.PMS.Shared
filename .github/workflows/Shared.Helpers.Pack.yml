@@ -1,4 +1,4 @@
-name: PMS.Shared.Helpers.Pack
+name: Create Shared.API NuGet package
 
 on:
   workflow_dispatch:

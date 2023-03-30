@@ -1,4 +1,4 @@
-name: PMS.Shared.Core.Pack
+name: Create Shared.Core NuGet package
 
 on:
   workflow_dispatch:
