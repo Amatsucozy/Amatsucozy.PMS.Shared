@@ -4,14 +4,14 @@ namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
 public abstract class Entity : IEquatable<Entity>
 {
-    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid Id { get; init; } = Guid.NewGuid();
     
-    public DateTimeOffset CreatedAt { get; private set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
     
-    public DateTimeOffset UpdatedAt { get; private set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.UtcNow;
     
     [Timestamp]
-    public byte[] RowVersion { get; private set; } = new byte[8];
+    public byte[] RowVersion { get; private set; }
 
     public bool Equals(Entity? other)
     {
