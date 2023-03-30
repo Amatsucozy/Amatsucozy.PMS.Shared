@@ -11,7 +11,7 @@ public abstract class Entity : IEqualityComparer<Entity>
     public DateTimeOffset UpdatedAt { get; protected set; } = DateTimeOffset.UtcNow;
 
     [Timestamp]
-    public byte[] RowVersion { get; protected set; } = new byte[8];
+    public uint RowVersion { get; protected set; }
 
     public bool Equals(Entity x, Entity y)
     {
