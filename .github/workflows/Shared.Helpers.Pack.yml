@@ -1,4 +1,4 @@
-name: Create Shared.API NuGet package
+name: Create Shared.Helpers NuGet package
 
 on:
   workflow_dispatch:
