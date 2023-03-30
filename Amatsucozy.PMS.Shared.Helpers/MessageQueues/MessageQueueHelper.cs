@@ -1,8 +1,8 @@
 ﻿using Amatsucozy.PMS.Shared.Helpers.MessageQueues.Configurations;
 using Amatsucozy.PMS.Shared.Helpers.MessageQueues.Constants;
+using Amatsucozy.PMS.Shared.Helpers.MessageQueues.Exceptions;
 using Azure;
 using MassTransit;
-using MassTransit.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,12 +21,12 @@ public static class MessageQueueHelper
 
         if (queueOptions is null)
         {
-            throw new Exception("Queue options is not configured");
+            throw new MessageQueueException("Queue options is not configured.");
         }
 
         if (!Uri.TryCreate(queueOptions.Host, UriKind.Absolute, out var hostUri))
         {
-            throw new Exception("Queue host is not in a correct format");
+            throw new MessageQueueException("Queue host is not in a correct format.");
         }
 
         switch (hostUri.Scheme)
@@ -43,7 +43,7 @@ public static class MessageQueueHelper
             }
             default:
             {
-                throw new ArgumentOutOfRangeException();
+                throw new MessageQueueException($"Scheme {hostUri.Scheme} is not recognized. Consider adding it to {nameof(QueueProviderSchemes)}. Or use a different scheme.");
             }
         }
     }
