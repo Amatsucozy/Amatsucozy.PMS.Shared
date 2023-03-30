@@ -1,5 +1,6 @@
 ﻿namespace Amatsucozy.PMS.Shared.Helpers.MessageQueues.Exceptions;
 
+[Serializable]
 public sealed class MessageQueueException : Exception
 {
     public MessageQueueException(string message) : base(message)
