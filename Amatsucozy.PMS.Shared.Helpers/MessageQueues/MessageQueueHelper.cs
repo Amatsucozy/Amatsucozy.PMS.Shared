@@ -31,7 +31,7 @@ public static class MessageQueueHelper
 
         switch (hostUri.Scheme)
         {
-            case QueueProviderSchemes.RabbitMq:
+            case QueueProviderSchemes.RabbitMq or QueueProviderSchemes.RabbitMqTls:
             {
                 AddRabbitMq(serviceCollection, queueOptions, hostUri, consumersContainingAssemblyType);
                 break;
