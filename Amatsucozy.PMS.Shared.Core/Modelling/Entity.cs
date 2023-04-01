@@ -14,7 +14,7 @@ public abstract class Entity : IEqualityComparer<Entity>
     [Timestamp]
     public uint RowVersion { get; protected set; }
 
-    public bool Equals(Entity x, Entity y)
+    public bool Equals(Entity? x, Entity? y)
     {
         if (ReferenceEquals(x, y)) return true;
         if (ReferenceEquals(x, null)) return false;
