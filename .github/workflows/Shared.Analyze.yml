@@ -1,4 +1,4 @@
-name: PMS.Shared.Analyze
+name: Shared source code analysis
 
 on:
   workflow_dispatch:
