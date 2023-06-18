@@ -3,7 +3,7 @@
 namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
 public interface IEntity<out TId, out TRowVersion>
-    where TId : notnull, new()
+    where TId : notnull
     where TRowVersion : notnull
 {
     TId Id { get; }
