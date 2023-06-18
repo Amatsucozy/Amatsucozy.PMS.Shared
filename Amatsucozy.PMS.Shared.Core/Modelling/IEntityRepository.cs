@@ -2,12 +2,13 @@
 
 namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
-public interface IEntityRepository<in TId, TRowVersion, TEntity>
+public interface IEntityRepository<in TId, TRowVersion, TEntity, TEntityDomain>
     where TId : notnull, new()
     where TRowVersion : notnull
     where TEntity : IEntity<TId, TRowVersion>
+    where TEntityDomain : IEntityDomain<TId, TRowVersion, TEntity>
 {
-    Result<TEntity> Find(TId id);
+    Result<TEntityDomain> Find(TId id);
 
-    Result<bool> Save(TEntity entity);
+    Result<bool> Save(TEntityDomain entity);
 }
