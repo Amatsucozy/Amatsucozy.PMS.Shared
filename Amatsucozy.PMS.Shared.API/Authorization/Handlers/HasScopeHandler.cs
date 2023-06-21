@@ -4,9 +4,9 @@ namespace Amatsucozy.PMS.Shared.API.Authorization.Handlers;
 
 public sealed class HasScopeHandler : AuthorizationHandler<HasScopeRequirement>
 {
-    private readonly AuthenticatedUserProvider _authenticatedUserProvider;
+    private readonly IAuthenticatedUserProvider _authenticatedUserProvider;
 
-    public HasScopeHandler(AuthenticatedUserProvider authenticatedUserProvider)
+    public HasScopeHandler(IAuthenticatedUserProvider authenticatedUserProvider)
     {
         _authenticatedUserProvider = authenticatedUserProvider;
     }
