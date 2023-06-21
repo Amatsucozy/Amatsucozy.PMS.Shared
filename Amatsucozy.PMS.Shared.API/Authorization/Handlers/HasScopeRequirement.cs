@@ -6,9 +6,9 @@ public sealed class HasScopeRequirement : IAuthorizationRequirement
 {
     public string Issuer { get; }
 
-    public ScopesFlag Scopes { get; }
+    public ScopesFlags Scopes { get; }
 
-    public HasScopeRequirement(string issuer, ScopesFlag scopes)
+    public HasScopeRequirement(string issuer, ScopesFlags scopes)
     {
         Scopes = scopes;
         Issuer = issuer ?? throw new ArgumentNullException(nameof(issuer));

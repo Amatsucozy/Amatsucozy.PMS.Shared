@@ -12,17 +12,17 @@ public static class Scopes
 
     public const string WriteAllUsers = "write:all_users";
 
-    public static readonly IReadOnlyDictionary<string, ScopesFlag> ScopesDictionary = new Dictionary<string, ScopesFlag>
+    public static readonly IReadOnlyDictionary<string, ScopesFlags> ScopesDictionary = new Dictionary<string, ScopesFlags>
     {
-        { ReadCurrentUser, ScopesFlag.ReadCurrentUser },
-        { ReadAllUsers, ScopesFlag.ReadAllUsers },
-        { WriteCurrentUser, ScopesFlag.WriteCurrentUser },
-        { WriteAllUsers, ScopesFlag.WriteAllUsers }
+        { ReadCurrentUser, ScopesFlags.ReadCurrentUser },
+        { ReadAllUsers, ScopesFlags.ReadAllUsers },
+        { WriteCurrentUser, ScopesFlags.WriteCurrentUser },
+        { WriteAllUsers, ScopesFlags.WriteAllUsers }
     };
 }
 
 [Flags]
-public enum ScopesFlag
+public enum ScopesFlags
 {
     None = 0b_0,
     ReadCurrentUser = 0b_1,

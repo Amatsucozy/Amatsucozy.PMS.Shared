@@ -14,7 +14,7 @@ public record AuthenticatedUser
                      ?.Value
                      .Split(' ')
                      .Aggregate(
-                         ScopesFlag.None,
+                         ScopesFlags.None,
                          (scopesEnum, scope) =>
                          {
                              if (!ScopesStaticClass.ScopesDictionary.TryGetValue(scope, out var scopeEnum))
@@ -24,11 +24,11 @@ public record AuthenticatedUser
 
                              return scopesEnum;
                          })
-                 ?? ScopesFlag.None;
-        IsValid = !string.IsNullOrWhiteSpace(Id) && Scopes != ScopesFlag.None;
+                 ?? ScopesFlags.None;
+        IsValid = !string.IsNullOrWhiteSpace(Id) && Scopes != ScopesFlags.None;
     }
 
-    public ScopesFlag Scopes { get; }
+    public ScopesFlags Scopes { get; }
 
     public string Id { get; }
 

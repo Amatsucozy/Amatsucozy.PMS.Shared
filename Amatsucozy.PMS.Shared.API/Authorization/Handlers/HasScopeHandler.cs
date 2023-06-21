@@ -4,8 +4,6 @@ namespace Amatsucozy.PMS.Shared.API.Authorization.Handlers;
 
 public sealed class HasScopeHandler : AuthorizationHandler<HasScopeRequirement>
 {
-    private const string ScopeClaimType = "scope";
-
     private readonly AuthenticatedUserProvider _authenticatedUserProvider;
 
     public HasScopeHandler(AuthenticatedUserProvider authenticatedUserProvider)
