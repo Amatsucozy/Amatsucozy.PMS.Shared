@@ -5,7 +5,7 @@ namespace Amatsucozy.PMS.Shared.API.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("Secured/api/[controller]")]
+[Route("api/[controller]")]
 public abstract class SecuredController : ControllerBase
 {
 }

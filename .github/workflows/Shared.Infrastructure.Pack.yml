@@ -1,0 +1,23 @@
+name: Create Shared.Infrastructure NuGet package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish_nuget_package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          dotnet tool restore
+          dotnet restore Amatsucozy.PMS.Shared.Infrastructure/Amatsucozy.PMS.Shared.Infrastructure.csproj
+
+      - name: Pack
+        run: dotnet pack Amatsucozy.PMS.Shared.Infrastructure/Amatsucozy.PMS.Shared.Infrastructure.csproj --no-restore -c Release
+
+      - name: Push
+        run: dotnet nuget push Amatsucozy.PMS.Shared.Infrastructure/bin/Release/Amatsucozy.PMS.Shared.Infrastructure.${env:NBGV_NuGetPackageVersion}.nupkg -s "github" -k ${{ secrets.GITHUB_TOKEN }}

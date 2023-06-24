@@ -94,7 +94,7 @@ public static class MessageQueueHelper
                         queueOptions.Password
                     );
                 });
-                
+
                 factoryConfigurator.ReceiveEndpoint(queueOptions.QueueName, endpointConfigurator =>
                 {
                     endpointConfigurator.EnableDeadLetteringOnMessageExpiration = true;

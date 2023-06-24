@@ -1,9 +1,11 @@
 ﻿namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
-public interface IEntityDomain<out TId, TRowVersion, TEntity>
+public interface IEntityDomain<out TId>
     where TId : notnull
-    where TRowVersion : notnull
-    where TEntity : IEntity<TId, TRowVersion>
 {
     TId Id { get; }
+
+    DateTimeOffset CreatedAt { get; }
+
+    DateTimeOffset UpdatedAt { get; }
 }

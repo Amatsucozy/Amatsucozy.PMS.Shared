@@ -9,6 +9,7 @@ public static class AuthorizationInjector
     public static void AddAuthorizationHandler(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddHttpContextAccessor();
+
         serviceCollection.AddScoped<IAuthenticatedUserProvider, AuthenticatedUserProvider>();
         serviceCollection.AddScoped<IAuthorizationHandler, HasScopeHandler>();
     }

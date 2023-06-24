@@ -18,7 +18,9 @@ public record AuthenticatedUser
                          (scopesEnum, scope) =>
                          {
                              if (!ScopesStaticClass.ScopesDictionary.TryGetValue(scope, out var scopeEnum))
+                             {
                                  return scopesEnum;
+                             }
 
                              scopesEnum |= scopeEnum;
 

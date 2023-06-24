@@ -9,7 +9,8 @@ public sealed class AuthenticatedUserProvider : IAuthenticatedUserProvider
 {
     public AuthenticatedUserProvider(IHttpContextAccessor httpContextAccessor, IOptions<JwtBearerOptions> jwtOptions)
     {
-        var context = httpContextAccessor.HttpContext ?? throw new HttpContextNotFoundException("HttpContext not found.");
+        var context = httpContextAccessor.HttpContext
+                      ?? throw new HttpContextNotFoundException("HttpContext not found.");
 
         User = new AuthenticatedUser(context, jwtOptions.Value.Authority ?? string.Empty);
     }

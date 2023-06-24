@@ -2,7 +2,7 @@
 
 namespace Amatsucozy.PMS.Shared.Core.Modelling;
 
-public interface IEntity<out TId, out TRowVersion>
+public interface IEntityModel<out TId, out TRowVersion>
     where TId : notnull
     where TRowVersion : notnull
 {
@@ -12,6 +12,5 @@ public interface IEntity<out TId, out TRowVersion>
 
     DateTimeOffset UpdatedAt { get; }
 
-    [Timestamp]
-    TRowVersion RowVersion { get; }
+    [Timestamp] TRowVersion RowVersion { get; }
 }

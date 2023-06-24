@@ -4,11 +4,11 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Title>Amatsucozy.PMS.Shared.Core</Title>
+        <Title>Amatsucozy.PMS.Shared.Infrastructure</Title>
         <Authors>Amatsucozy</Authors>
-        <Description>Core components for Core projects</Description>
+        <Description>Infrastructure components for Infrastructure projects</Description>
         <Copyright>Amatsucozy</Copyright>
-        <PackageTags>pms shared core nuget</PackageTags>
+        <PackageTags>pms shared infrastructure nuget</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
